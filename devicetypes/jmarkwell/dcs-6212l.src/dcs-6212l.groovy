@@ -294,7 +294,6 @@ def take() {
     catch(Exception e) {
         log.debug "Hit Exception $e on $hubAction"
     }
-    
 }
 
 def motionCmd(int motion, String attr) {
