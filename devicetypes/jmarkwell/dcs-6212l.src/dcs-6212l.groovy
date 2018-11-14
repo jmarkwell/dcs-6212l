@@ -1,6 +1,6 @@
 /**
  *  D-Link DCS-6212L
- *  Build 2018030903
+ *  Build 2018111401
  *
  *  Adapted from Ben Lebson's (GitHub: blebson) D-Link DCS-2630L v1.0.3 device handler that is designed to work with
  *  his "D-Link Camera Manager" SmartApp.
@@ -20,11 +20,13 @@
  *
  *  ChangeLog:
  *      
+ *      20181114:
+ *          01: Fixed incorrect RTSP URL.
+ *
  *      20180309:
  *          01: Conversion from parent/child system to standard device handler system.
  *          02: Corrected usage of CameraIP/VideoIP and CameraPort/VideoPort preferences.
  *          03: Code cleanup.
- *
  */
 
 metadata {
@@ -595,8 +597,8 @@ def refresh() {
 def start() {
     log.trace "start()"
     def dataLiveVideo = [
-        OutHomeURL  : "rtsp://${CameraUser}:${CameraPassword}@${VideoIP}:${VideoPort}/play1.sdp",
-        InHomeURL   : "rtsp://${CameraUser}:${CameraPassword}@${CameraIP}:${CameraPort}/play1.sdp",
+        OutHomeURL  : "rtsp://${CameraUser}:${CameraPassword}@${VideoIP}:${VideoPort}/live1.sdp",
+        InHomeURL   : "rtsp://${CameraUser}:${CameraPassword}@${CameraIP}:${CameraPort}/live1.sdp",
         ThumbnailURL: "http://cdn.device-icons.smartthings.com/camera/dlink-indoor@2x.png",
         cookie      : [key: "key", value: "value"]
     ]
@@ -640,5 +642,5 @@ def configure() {
 }
 
 def getInHomeURL() {
-   [InHomeURL: "rtsp://${CameraUser}:${CameraPassword}@${CameraIP}:${CameraPort}/play1.sdp"]
+   [InHomeURL: "rtsp://${CameraUser}:${CameraPassword}@${CameraIP}:${CameraPort}/live1.sdp"]
 }
